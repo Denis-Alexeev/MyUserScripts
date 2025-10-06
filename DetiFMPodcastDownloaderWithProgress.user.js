@@ -8,7 +8,9 @@
 // @run-at       document-end
 // @updateURL    https://denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js
 // @downloadURL  https://denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js
-// @source       https://denis-alexeev.github.io/MyUserScripts/
+// @source       https://github.com/Denis-Alexeev/MyUserScripts
+// @namespace    https://github.com/Denis-Alexeev
+// @supportURL   https://github.com/Denis-Alexeev/MyUserScripts/issues
 // ==/UserScript==
 
 /*
