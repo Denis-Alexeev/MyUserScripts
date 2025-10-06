@@ -6,9 +6,9 @@
 // @match        https://detifm.ru/fairy_tales/id/*
 // @grant        GM_download
 // @run-at       document-end
-// @updateURL    https://denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js
-// @downloadURL  https://denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js
-// @source       https://denis-alexeev.github.io/MyUserScripts/
+// @updateURL    denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js
+// @downloadURL  denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js
+// @source       denis-alexeev.github.io/MyUserScripts/
 // ==/UserScript==
 
 /*
