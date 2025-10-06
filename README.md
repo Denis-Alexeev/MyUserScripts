@@ -58,6 +58,6 @@
 `https://www.payback.de/coupons*`
 
 **Установка:**  
-👉 [Установить скрипт](https://denis-alexeev.github.io/MyUserScripts/PaybackManualActivateCoupons.user.js)
+👉 [Установить скрипт](https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js)
 
 ---
