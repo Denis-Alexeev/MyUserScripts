@@ -32,7 +32,7 @@
 `https://detifm.ru/fairy_tales/id/*`  
 
 **Установка:**  
-👉 [Установить скрипт](https://denis-alexeev.github.io/MyUserScripts/DetiFmPodcastShowAllButton.user.js)
+👉 [Установить скрипт](https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/DetiFmPodcastShowAllButton.user.js)
 
 ---
 
