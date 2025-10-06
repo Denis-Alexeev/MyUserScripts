@@ -10,6 +10,7 @@
 // @downloadURL  https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/DetiFmPodcastShowAllButton.user.js
 // @homepageURL  https://github.com/Denis-Alexeev/MyUserScripts
 // @supportURL   https://github.com/Denis-Alexeev/MyUserScripts/issues
+// @iconURL      https://detifm.ru/favicon.ico
 // ==/UserScript==
 
 /*
