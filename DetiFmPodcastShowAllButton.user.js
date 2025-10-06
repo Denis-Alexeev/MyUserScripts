@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DetiFm Podcast Show All Button
-// @namespace    http://tampermonkey.net/
-// @version      1.9
+// @namespace    https://github.com/Denis-Alexeev/MyUserScripts
+// @version      2.0
 // @description  Заменяет "Показать ещё" на "Показать всё" и раскрывает все эпизоды за раз
 // @match        https://detifm.ru/fairy_tales/id/*
 // @grant        none
@@ -33,39 +33,50 @@ https://detifm.ru/fairy_tales/id/*
 (function() {
     'use strict';
 
-    function init() {
-        const moreBtn = document.querySelector('.podcast-list__listen-more.js-more-button');
-        if (!moreBtn) {
-            setTimeout(init, 300);
-            return;
-        }
+    function handleButton(btn) {
+        if (!btn || btn.dataset.listenerAlreadyAdded) return;
+        btn.dataset.listenerAlreadyAdded = 'true';
 
-        if (moreBtn.dataset.listenerAlreadyAdded) return;
-        moreBtn.dataset.listenerAlreadyAdded = 'true';
+        btn.textContent = 'Показать всё';
 
-        moreBtn.textContent = 'Показать всё';
-
-        moreBtn.addEventListener('click', async (e) => {
+        btn.addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation();
 
-            let btn = document.querySelector('.podcast-list__listen-more.js-more-button');
-            while (btn && !btn.classList.contains('hidden')) {
-                btn.click(); // вызывать родной обработчик
-                await new Promise(r => setTimeout(r, 300)); // подождать подгрузку
-                btn = document.querySelector('.podcast-list__listen-more.js-more-button');
+            let nextBtn = document.querySelector('.podcast-list__listen-more.js-more-button');
+            while (nextBtn && !nextBtn.classList.contains('hidden')) {
+                nextBtn.click();
+                await new Promise(r => setTimeout(r, 300));
+                nextBtn = document.querySelector('.podcast-list__listen-more.js-more-button');
             }
         }, { once: true });
     }
 
-    init();
+    const observer = new MutationObserver(mutations => {
+        for (const mutation of mutations) {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType !== 1) return; // Только элементы
+                if (node.matches('.podcast-list__listen-more.js-more-button')) {
+                    handleButton(node);
+                } else {
+                    const btn = node.querySelector('.podcast-list__listen-more.js-more-button');
+                    if (btn) handleButton(btn);
+                }
+            });
+        }
+    });
 
+    observer.observe(document.body, { childList: true, subtree: true });
 
     let lastUrl = location.href;
     setInterval(() => {
         if (location.href !== lastUrl) {
             lastUrl = location.href;
-            setTimeout(init, 800);
+            setTimeout(() => {
+                const btn = document.querySelector('.podcast-list__listen-more.js-more-button');
+                handleButton(btn);
+            }, 500);
         }
-    }, 1000);
+    }, 500);
+
 })();
