@@ -7,6 +7,8 @@
 // @grant        none
 // @author       Denis-Alexeev
 // @updateURL    https://denis-alexeev.github.io/MyUserScripts/DetiFmPodcastShowAllButton.user.js
+// @downloadURL  https://denis-alexeev.github.io/MyUserScripts/DetiFmPodcastShowAllButton.user.js
+// @source       https://denis-alexeev.github.io/MyUserScripts/
 // ==/UserScript==
 
 /*
