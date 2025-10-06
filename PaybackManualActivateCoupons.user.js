@@ -6,31 +6,7 @@
 // @version         1.9
 // @description:ru  Кнопка на странице для ручной активации всех купонов
 // @description:de  Schaltfläche auf der Seite zur manuellen Aktivierung aller Gutscheine
-
 // @description:en  Button on the page for manually activating all coupons
-// @description:en  
-// @description:en  This script adds a button to the site [payback.de](https://www.payback.de/coupons)  
-// @description:en  **"▶ Activate Coupons"**, which, when clicked, automatically clicks all available coupons.  
-// @description:en  This allows you to **manually activate all offers at once** without visiting each coupon.
-// @description:en  
-// @description:en  💡 Main features:
-// @description:en  - Adds a floating button in the bottom-right corner of the page.
-// @description:en  - When clicked, it goes through all `pbc-coupon` elements inside the Shadow DOM and activates them.
-// @description:en  - After execution, shows a notification with the number of successfully activated coupons.
-// @description:en  - Works entirely locally, without additional permissions or external requests.
-// @description:en  
-// @description:en  ⚙️ Technical details:
-// @description:en  - Uses Shadow DOM traversal to access activation buttons.
-// @description:en  - Automatically displays a popup notification with the result.
-// @description:en  - No data is sent to external servers.
-// @description:en  
-// @description:en  🧩 Supported pages:
-// @description:en  `https://www.payback.de/coupons*`
-// @description:en  
-// @description:en  📦 Requirements:
-// @description:en  - [Tampermonkey](https://tampermonkey.net/) extension
-// @description:en  - No `@grant` needed — works with regular DOM elements
-
 // @match           https://www.payback.de/coupons*
 // @grant           none
 // @run-at          document-end
