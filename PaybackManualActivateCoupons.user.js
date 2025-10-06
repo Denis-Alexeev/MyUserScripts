@@ -1,4 +1,5 @@
 // ==UserScript==
+// @name            Payback Manual Activate Coupons
 // @name:en         Payback Manual Activate Coupons
 // @name:ru         Payback активировать все купоны
 // @name:de         Payback Manuelle Gutscheinaktivierung
@@ -7,6 +8,7 @@
 // @description:ru  Кнопка на странице для ручной активации всех купонов
 // @description:de  Schaltfläche auf der Seite zur manuellen Aktivierung aller Gutscheine
 // @description:en  Button on the page for manually activating all coupons
+// @description     Button on the page for manually activating all coupons
 // @match           https://www.payback.de/coupons*
 // @grant           none
 // @run-at          document-end
