@@ -1,9 +1,9 @@
 // ==UserScript==
-// @namespace       https://github.com/Denis-Alexeev/MyUserScripts
 // @name            Payback Manual Activate Coupons
-// @mame:de         Payback Manuelle Gutscheinaktivierung
 // @name:ru         Payback активировать все купоны
-// @version         1.7
+// @name:de         Payback Manuelle Gutscheinaktivierung
+// @namespace       https://github.com/Denis-Alexeev/MyUserScripts
+// @version         1.8
 // @description:ru  Кнопка на странице для ручной активации всех купонов
 // @description:de  Schaltfläche auf der Seite zur manuellen Aktivierung aller Gutscheine
 // @description     Button on the page for manually activating all coupons
@@ -183,7 +183,7 @@ RU
         msg.textContent = text;
         Object.assign(msg.style, {
             position: 'fixed',
-            top: '20px',
+            bottom: '120px',
             right: '20px',
             padding: '10px 20px',
             background: '#4caf50',
@@ -195,8 +195,8 @@ RU
             transition: 'opacity 0.3s',
         });
         document.body.appendChild(msg);
-        setTimeout(() => msg.style.opacity = '0', 1500);
-        setTimeout(() => msg.remove(), 2000);
+        setTimeout(() => msg.style.opacity = '0', 1000);
+        setTimeout(() => msg.remove(), 1500);
     }
 
     function addControlButton() {
@@ -224,7 +224,10 @@ RU
     function updateButtonText() {
         const btn = document.getElementById('pb-activate-btn');
         if (btn) btn.textContent = T.btn;
+        label.textContent = getT().switchLabel
     }
+
+    let label;
 
     function addLanguageSwitcher() {
         const container = document.createElement('div');
@@ -242,7 +245,7 @@ RU
             alignItems: 'center',
         });
 
-        const label = document.createElement('span');
+        label = document.createElement('span');
         label.textContent = T.switchLabel;
         label.style.fontSize = '12px';
         label.style.marginRight = '4px';
