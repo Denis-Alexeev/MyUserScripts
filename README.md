@@ -48,3 +48,16 @@
 👉 [Установить скрипт](https://denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js)
 
 ---
+
+### 🏷️ [Payback Manual Activate Coupons](PaybackManualActivateCoupons.user.js)
+**Описание:**  
+Добавляет кнопку **«▶ Активировать купоны»** на странице [payback.de/coupons](https://www.payback.de/coupons).  
+Позволяет активировать **все доступные купоны одним кликом** и показывает уведомление с результатом.
+
+**Поддерживаемые страницы:**  
+`https://www.payback.de/coupons*`
+
+**Установка:**  
+👉 [Установить скрипт](https://denis-alexeev.github.io/MyUserScripts/PaybackManualActivateCoupons.user.js)
+
+---
