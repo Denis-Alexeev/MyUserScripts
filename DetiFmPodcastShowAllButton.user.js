@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DetiFm Podcast Show All Button
 // @namespace    http://tampermonkey.net/
-// @version      1.8
+// @version      1.9
 // @description  Заменяет "Показать ещё" на "Показать всё" и раскрывает все эпизоды за раз
 // @match        https://detifm.ru/fairy_tales/id/*
 // @grant        none
