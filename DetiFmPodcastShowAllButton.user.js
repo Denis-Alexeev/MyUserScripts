@@ -6,9 +6,10 @@
 // @match        https://detifm.ru/fairy_tales/id/*
 // @grant        none
 // @author       Denis-Alexeev
-// @updateURL    https://denis-alexeev.github.io/MyUserScripts/DetiFmPodcastShowAllButton.user.js
-// @downloadURL  https://denis-alexeev.github.io/MyUserScripts/DetiFmPodcastShowAllButton.user.js
-// @source       https://denis-alexeev.github.io/MyUserScripts/
+// @updateURL    https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/DetiFmPodcastShowAllButton.user.js
+// @downloadURL  https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/DetiFmPodcastShowAllButton.user.js
+// @homepageURL  https://github.com/Denis-Alexeev/MyUserScripts
+// @supportURL   https://github.com/Denis-Alexeev/MyUserScripts/issues
 // ==/UserScript==
 
 /*
