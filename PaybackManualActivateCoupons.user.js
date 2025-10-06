@@ -7,6 +7,8 @@
 // @grant        none
 // @run-at       document-end
 // @updateURL    https://denis-alexeev.github.io/MyUserScripts/PaybackManualActivateCoupons.user.js
+// @downloadURL  https://denis-alexeev.github.io/MyUserScripts/PaybackManualActivateCoupons.user.js
+// @source       https://denis-alexeev.github.io/MyUserScripts/
 // ==/UserScript==
 
 /*
