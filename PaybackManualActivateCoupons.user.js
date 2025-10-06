@@ -1,14 +1,15 @@
 // ==UserScript==
 // @name         Payback Manual Activate Coupons
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Кнопка на странице для ручной активации всех купонов
 // @match        https://www.payback.de/coupons*
 // @grant        none
 // @run-at       document-end
-// @updateURL    https://denis-alexeev.github.io/MyUserScripts/PaybackManualActivateCoupons.user.js
-// @downloadURL  https://denis-alexeev.github.io/MyUserScripts/PaybackManualActivateCoupons.user.js
-// @source       https://denis-alexeev.github.io/MyUserScripts/
+// @updateURL    https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js
+// @downloadURL  https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js
+// @homepageURL  https://github.com/Denis-Alexeev/MyUserScripts
+// @supportURL   https://github.com/Denis-Alexeev/MyUserScripts/issues
 // ==/UserScript==
 
 /*
