@@ -1,9 +1,12 @@
 // ==UserScript==
+// @namespace       https://github.com/Denis-Alexeev/MyUserScripts
 // @name            Payback Manual Activate Coupons
-// @version         1.5
+// @mame:de         Payback Manuelle Gutscheinaktivierung
+// @name:ru         Payback активировать все купоны
+// @version         1.7
 // @description:ru  Кнопка на странице для ручной активации всех купонов
 // @description:de  Schaltfläche auf der Seite zur manuellen Aktivierung aller Gutscheine
-// @description:en  Button on the page for manually activating all coupons
+// @description     Button on the page for manually activating all coupons
 // @match           https://www.payback.de/coupons*
 // @grant           none
 // @run-at          document-end
@@ -12,6 +15,7 @@
 // @homepageURL     https://github.com/Denis-Alexeev/MyUserScripts
 // @supportURL      https://github.com/Denis-Alexeev/MyUserScripts/issues
 // @iconURL         https://www.payback.de/resource/blob/4506/b8323ff55b34054722769ae5652c22ae/main-favicon.ico
+// @license         MIT
 // ==/UserScript==
 
 /*
@@ -100,35 +104,78 @@ RU
 */
 
 
-(function() {
+(function () {
     'use strict';
+
+    let lang = localStorage.getItem('pb_lang') || (navigator.language || 'en').slice(0, 2);
+
+    const TEXTS = {
+        en: {
+            btn: '▶ Activate Coupons',
+            notFound: '❌ "coupon-center" not found or has no shadowRoot',
+            done: (c, t) => `✅ Done! Activated ${c}/${t} coupons.`,
+            found: (n) => `🔍 Found ${n} coupons.`,
+            activated: (i) => `✅ Activated coupon #${i}`,
+            switchLabel: '🌐 Language:',
+        },
+        de: {
+            btn: '▶ Gutscheine aktivieren',
+            notFound: '❌ "coupon-center" wurde nicht gefunden oder hat kein shadowRoot',
+            done: (c, t) => `✅ Fertig! ${c} von ${t} Gutscheinen aktiviert.`,
+            found: (n) => `🔍 ${n} Gutscheine gefunden.`,
+            activated: (i) => `✅ Gutschein #${i} aktiviert`,
+            switchLabel: '🌐 Sprache:',
+        },
+        ru: {
+            btn: '▶ Активировать купоны',
+            notFound: '❌ Не найден coupon-center или у него нет shadowRoot',
+            done: (c, t) => `✅ Готово! Активировано ${c}/${t} купонов.`,
+            found: (n) => `🔍 Найдено купонов: ${n}`,
+            activated: (i) => `✅ Активирован купон #${i}`,
+            switchLabel: '🌐 Язык:',
+        }
+    };
+
+    function getT() {
+        return TEXTS[lang] || TEXTS.en;
+    }
+
+    let T = getT();
+
+    function setLanguage(newLang) {
+        lang = newLang;
+        localStorage.setItem('pb_lang', newLang);
+        T = getT();
+        updateButtonText();
+        showMessage(`${T.switchLabel} ${newLang.toUpperCase()}`);
+    }
 
     function activateCoupons() {
         const host = document.getElementById('coupon-center');
         if (!host || !host.shadowRoot) {
-            showMessage('❌ Не найден coupon-center или у него нет shadowRoot');
+            showMessage(T.notFound);
+            console.warn(T.notFound);
             return;
         }
 
         const coupons = host.shadowRoot.querySelectorAll('pbc-coupon');
-        console.log(`Найдено купонов: ${coupons.length}`);
+        console.log(T.found(coupons.length));
         let clicked = 0;
 
         coupons.forEach((coupon, i) => {
             if (!coupon.shadowRoot) return;
-
             const action = coupon.shadowRoot.querySelector('pbc-coupon-call-to-action');
             if (!action || !action.shadowRoot) return;
-
             const btn = action.shadowRoot.querySelector('button.not-activated');
             if (btn) {
                 btn.click();
                 clicked++;
-                console.log(`✅ Активирован купон #${i+1}`);
+                console.log(T.activated(i + 1));
             }
         });
 
-        showMessage(`Готово! Активировано ${clicked}/${coupons.length} купонов.`);
+        console.log(T.done(clicked, coupons.length));
+        showMessage(T.done(clicked, coupons.length));
     }
 
     function showMessage(text) {
@@ -144,15 +191,18 @@ RU
             fontSize: '16px',
             borderRadius: '8px',
             zIndex: 9999,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+            transition: 'opacity 0.3s',
         });
         document.body.appendChild(msg);
-        setTimeout(() => msg.remove(), 4000);
+        setTimeout(() => msg.style.opacity = '0', 1500);
+        setTimeout(() => msg.remove(), 2000);
     }
 
     function addControlButton() {
         const btn = document.createElement('button');
-        btn.textContent = '▶ Активировать купоны';
+        btn.id = 'pb-activate-btn';
+        btn.textContent = T.btn;
         Object.assign(btn.style, {
             position: 'fixed',
             bottom: '20px',
@@ -165,11 +215,60 @@ RU
             fontSize: '14px',
             cursor: 'pointer',
             zIndex: 9999,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
         });
         btn.addEventListener('click', activateCoupons);
         document.body.appendChild(btn);
     }
 
+    function updateButtonText() {
+        const btn = document.getElementById('pb-activate-btn');
+        if (btn) btn.textContent = T.btn;
+    }
+
+    function addLanguageSwitcher() {
+        const container = document.createElement('div');
+        Object.assign(container.style, {
+            position: 'fixed',
+            bottom: '70px',
+            right: '20px',
+            display: 'flex',
+            gap: '5px',
+            background: 'rgba(255,255,255,0.9)',
+            padding: '6px 8px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+            zIndex: 9999,
+            alignItems: 'center',
+        });
+
+        const label = document.createElement('span');
+        label.textContent = T.switchLabel;
+        label.style.fontSize = '12px';
+        label.style.marginRight = '4px';
+
+        const makeBtn = (flag, code) => {
+            const b = document.createElement('button');
+            b.textContent = flag;
+            b.style.fontSize = '16px';
+            b.style.border = 'none';
+            b.style.background = 'transparent';
+            b.style.cursor = 'pointer';
+            b.title = code.toUpperCase();
+            b.addEventListener('click', () => setLanguage(code));
+            return b;
+        };
+
+        container.append(
+            label,
+            makeBtn('🇬🇧', 'en'),
+            makeBtn('🇩🇪', 'de'),
+            makeBtn('🇷🇺', 'ru')
+        );
+
+        document.body.appendChild(container);
+    }
+
     addControlButton();
+    addLanguageSwitcher();
 })();
