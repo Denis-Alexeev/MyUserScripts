@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Payback Manual Activate Coupons
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Кнопка на странице для ручной активации всех купонов
 // @match        https://www.payback.de/coupons*
 // @grant        none
