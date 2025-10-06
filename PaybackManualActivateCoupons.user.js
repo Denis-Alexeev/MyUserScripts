@@ -1,18 +1,78 @@
 // ==UserScript==
-// @name         Payback Manual Activate Coupons
-// @namespace    http://tampermonkey.net/
-// @version      1.2
-// @description  Кнопка на странице для ручной активации всех купонов
-// @match        https://www.payback.de/coupons*
-// @grant        none
-// @run-at       document-end
-// @updateURL    https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js
-// @downloadURL  https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js
-// @homepageURL  https://github.com/Denis-Alexeev/MyUserScripts
-// @supportURL   https://github.com/Denis-Alexeev/MyUserScripts/issues
+// @name            Payback Manual Activate Coupons
+// @version         1.5
+// @description:ru  Кнопка на странице для ручной активации всех купонов
+// @description:de  Schaltfläche auf der Seite zur manuellen Aktivierung aller Gutscheine
+// @description:en  Button on the page for manually activating all coupons
+// @match           https://www.payback.de/coupons*
+// @grant           none
+// @run-at          document-end
+// @updateURL       https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js
+// @downloadURL     https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/PaybackManualActivateCoupons.user.js
+// @homepageURL     https://github.com/Denis-Alexeev/MyUserScripts
+// @supportURL      https://github.com/Denis-Alexeev/MyUserScripts/issues
+// @iconURL         https://www.payback.de/resource/blob/4506/b8323ff55b34054722769ae5652c22ae/main-favicon.ico
 // ==/UserScript==
 
 /*
+EN
+🎟️ Description:
+This script adds a button to the site [payback.de](https://www.payback.de/coupons)  
+**"▶ Activate Coupons"**, which, when clicked, automatically clicks all available coupons.  
+This allows you to **manually activate all offers at once** without visiting each coupon.
+
+💡 Main features:
+- Adds a floating button in the bottom-right corner of the page.
+- When clicked, it goes through all `pbc-coupon` elements inside the Shadow DOM and activates them.
+- After execution, shows a notification with the number of successfully activated coupons.
+- Works entirely locally, without additional permissions or external requests.
+
+⚙️ Technical details:
+- Uses Shadow DOM traversal to access activation buttons.
+- Automatically displays a popup notification with the result.
+- No data is sent to external servers.
+
+🧩 Supported pages:
+`https://www.payback.de/coupons*`
+
+📦 Requirements:
+- [Tampermonkey](https://tampermonkey.net/) extension
+- No `@grant` needed — works with regular DOM elements
+
+Author: Denis-Alexeev
+*/
+
+/*
+DE
+🎟️ Beschreibung:
+Dieses Skript fügt der Seite [payback.de](https://www.payback.de/coupons)  
+eine Schaltfläche **"▶ Gutscheine aktivieren"** hinzu, die beim Klicken automatisch alle verfügbaren Gutscheine aktiviert.  
+Damit können **alle Angebote auf einmal manuell aktiviert werden**, ohne jeden Gutschein einzeln anzuklicken.
+
+💡 Hauptfunktionen:
+- Fügt eine schwebende Schaltfläche in der unteren rechten Ecke der Seite hinzu.
+- Beim Klicken werden alle `pbc-coupon`-Elemente innerhalb des Shadow DOM durchlaufen und aktiviert.
+- Nach der Ausführung wird eine Benachrichtigung mit der Anzahl erfolgreich aktivierter Gutscheine angezeigt.
+- Arbeitet vollständig lokal, ohne zusätzliche Berechtigungen oder externe Anfragen.
+
+⚙️ Technische Details:
+- Nutzt die Traversierung des Shadow DOM, um auf die Aktivierungsschaltflächen zuzugreifen.
+- Zeigt automatisch eine Popup-Benachrichtigung mit dem Ergebnis an.
+- Es werden keine Daten an externe Server gesendet.
+
+🧩 Unterstützte Seiten:
+`https://www.payback.de/coupons*`
+
+📦 Voraussetzungen:
+- [Tampermonkey](https://tampermonkey.net/) Erweiterung
+- Kein `@grant` erforderlich — funktioniert mit normalen DOM-Elementen
+
+Autor: Denis-Alexeev
+*/
+
+
+/*
+RU
 🎟️ Описание:
 Скрипт добавляет на сайт [payback.de](https://www.payback.de/coupons) кнопку  
 **«▶ Активировать купоны»**, при нажатии на которую автоматически кликаются все доступные купоны.  
