@@ -32,7 +32,7 @@
 `https://detifm.ru/fairy_tales/id/*`  
 
 **Установка:**  
-👉 [Установить скрипт](DetiFmPodcastShowAllButton.user.js)
+👉 [Установить скрипт](https://denis-alexeev.github.io/MyUserScripts/DetiFmPodcastShowAllButton.user.js)
 
 ---
 
@@ -45,6 +45,6 @@
 `https://detifm.ru/fairy_tales/id/*`
 
 **Установка:**  
-👉 [Установить скрипт](DetiFMPodcastDownloaderWithProgress.user.js)
+👉 [Установить скрипт](https://denis-alexeev.github.io/MyUserScripts/DetiFMPodcastDownloaderWithProgress.user.js)
 
 ---
