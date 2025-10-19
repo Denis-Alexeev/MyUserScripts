@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         DetiFM Podcast Downloader with Progress
-// @version      1.3
+// @version      2
 // @description  Добавляет кнопки для скачивания mp3 с прогрессом и подпапкой автора на detifm.ru
-// @match        https://detifm.ru/fairy_tales/id/*
+// @match        https://detifm.ru/*
 // @grant        GM_download
 // @run-at       document-end
 // @updateURL    https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/DetiFMPodcastDownloaderWithProgress.user.js
