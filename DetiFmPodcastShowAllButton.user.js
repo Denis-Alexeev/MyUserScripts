@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         DetiFm Podcast Show All Button
-// @namespace    https://github.com/Denis-Alexeev/MyUserScripts
-// @version      2.0
-// @description  Заменяет "Показать ещё" на "Показать всё" и раскрывает все эпизоды за раз
-// @match        https://detifm.ru/fairy_tales/id/*
+// @name         DetiFm Podcast Show All Button (Stable SPA Version)
+// @namespace    http://tampermonkey.net/
+// @version      3
+// @description  Надёжно заменяет "Показать ещё" на "Показать всё" и раскрывает все эпизоды, работает с SPA-навигацией
+// @match        https://detifm.ru/*
 // @grant        none
 // @author       Denis-Alexeev
 // @updateURL    https://raw.githubusercontent.com/Denis-Alexeev/MyUserScripts/master/DetiFmPodcastShowAllButton.user.js
@@ -13,22 +13,7 @@
 // @iconURL      https://detifm.ru/favicon.ico
 // ==/UserScript==
 
-/*
-📄 Описание:
-Этот скрипт заменяет кнопку «Показать ещё» на «Показать всё» на сайте detifm.ru.
-После нажатия он автоматически раскрывает все эпизоды подкаста, кликая по кнопке до тех пор,
-пока не будут загружены все записи.
-
-🔧 Особенности:
-- Автоматически меняет текст кнопки.
-- Раскрывает все эпизоды одним кликом.
-- Работает при навигации без перезагрузки страницы.
-
-🌐 Поддерживаемые страницы:
-https://detifm.ru/fairy_tales/id/*
-
-Автор: https://github.com/Denis-Alexeev/
-*/
+console.log("START");
 
 (function() {
     'use strict';
@@ -46,12 +31,16 @@ https://detifm.ru/fairy_tales/id/*
             let nextBtn = document.querySelector('.podcast-list__listen-more.js-more-button');
             while (nextBtn && !nextBtn.classList.contains('hidden')) {
                 nextBtn.click();
-                await new Promise(r => setTimeout(r, 300));
+                //await new Promise(r => setTimeout(r, 300));
                 nextBtn = document.querySelector('.podcast-list__listen-more.js-more-button');
             }
         }, { once: true });
-    }
+    };
 
+    const btn = document.querySelector('.podcast-list__listen-more.js-more-button');
+    handleButton(btn);
+
+    // MutationObserver для отслеживания появления кнопки в DOM
     const observer = new MutationObserver(mutations => {
         for (const mutation of mutations) {
             mutation.addedNodes.forEach(node => {
@@ -68,15 +57,6 @@ https://detifm.ru/fairy_tales/id/*
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    let lastUrl = location.href;
-    setInterval(() => {
-        if (location.href !== lastUrl) {
-            lastUrl = location.href;
-            setTimeout(() => {
-                const btn = document.querySelector('.podcast-list__listen-more.js-more-button');
-                handleButton(btn);
-            }, 500);
-        }
-    }, 500);
+
 
 })();
